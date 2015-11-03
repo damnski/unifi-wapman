@@ -1,0 +1,25 @@
+---
+
+- name: adding the user groups
+  sudo: true
+  group: name={{ item.name }}
+         state=present
+         gid={{ item.gid }}
+  with_items: grouplist
+  when: grouplist is defined
+  tags:
+    - users
+
+- name: adding users
+  sudo: true
+  user: name={{ item.name }}
+        state={{ item.state}}
+        group={{ item.group }}
+        groups={{ item.groups}}
+        home=/home/{{ item.name }}
+        uid={{ item.uid }}
+        shell={{ item.shell }}
+        createhome=no
+  with_items: userlist
+  tags:
+    - users

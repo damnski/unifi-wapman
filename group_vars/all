@@ -1,0 +1,14 @@
+---
+
+pkg:
+    - mongodb-org 
+    - mongodb-org-server 
+    - java-1.7.0-openjdk 
+    - unzip 
+    - wget
+
+userlist:
+    - { name: 'unifi', uid: '1999', first: 'unifi', last: 'manager', email: '', state: 'present', group: 'unifi', shell: '/sbin/nologin', groups: '' }
+
+grouplist:
+    - { name: 'unifi', gid: '1999' }

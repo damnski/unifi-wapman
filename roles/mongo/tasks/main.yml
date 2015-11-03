@@ -1,0 +1,9 @@
+---
+
+- name: service mongod chkconfig on and start
+  sudo: true
+  service: name=mongod
+           enabled=yes
+           state=started
+  tags:
+    - mongo

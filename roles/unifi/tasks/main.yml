@@ -1,0 +1,50 @@
+---
+
+- name: get unifi bin zip
+  sudo: true
+  command: wget http://www.ubnt.com/downloads/unifi/4.6.3/UniFi.unix.zip -O /usr/local/src/UniFi.unix.zip
+  args: 
+    chdir: /usr/local/src
+    creates: /usr/local/src/UniFi.unix.zip
+  tags:
+    - unifi
+    - unifi_wget
+
+- name: unzip UniFi
+  sudo: true
+  command: unzip UniFi.unix.zip -d /opt
+  args:
+    chdir: /usr/local/src
+    creates: /opt/UniFi
+  tags:
+    - unifi
+    - unifi_unzip
+
+- name: recursively chown /opt/UniFi
+  sudo: true
+  file: path=/opt/UniFi
+        owner=unifi
+        group=unifi
+        state=directory
+        recurse=yes
+  tags:
+    - unifi
+    - unifi_chown
+
+- name: install systemd startup file for unifi
+  sudo: true
+  copy: src=unifi.service
+        dest=/usr/lib/systemd/system/
+  notify: systemctl daemon-reload
+  tags:
+    - unifi
+    - unifi_systemd
+
+- name: systemctl enable unifi.service
+  sudo: true
+  service: name=unifi.service
+           enabled=yes
+           state=started
+  tags:
+    - unifi
+    - unifi_systemd
