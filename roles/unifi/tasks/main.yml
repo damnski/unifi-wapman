@@ -2,7 +2,7 @@
 
 - name: get unifi bin zip
   sudo: true
-  command: wget http://www.ubnt.com/downloads/unifi/4.6.3/UniFi.unix.zip -O /usr/local/src/UniFi.unix.zip
+  command: wget http://dl.ubnt.com/unifi/4.7.5/UniFi.unix.zip -O /usr/local/src/UniFi.unix.zip
   args: 
     chdir: /usr/local/src
     creates: /usr/local/src/UniFi.unix.zip
