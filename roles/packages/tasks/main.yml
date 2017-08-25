@@ -1,7 +1,7 @@
 ---
 
 - name: install application packages for wapman
-  sudo: true
+  become: true
   yum: pkg={{ item }}
        state=present
   with_items: "{{ pkg }}"

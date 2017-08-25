@@ -3,7 +3,7 @@
 pkg:
     - mongodb-org 
     - mongodb-org-server 
-    - java-1.7.0-openjdk 
+    - java-1.8.0-openjdk 
     - unzip 
     - wget
 
